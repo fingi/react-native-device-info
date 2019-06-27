@@ -241,7 +241,7 @@ RCT_EXPORT_MODULE(RNDeviceInfo)
 }
 
 - (NSDictionary *) getStorageDictionary {
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);  
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     return [[NSFileManager defaultManager] attributesOfFileSystemForPath:[paths lastObject] error: nil];
 }
 
@@ -259,7 +259,7 @@ RCT_EXPORT_MODULE(RNDeviceInfo)
 - (uint64_t) freeDiskStorage {
     uint64_t freeSpace = 0;
     NSDictionary *storage = [self getStorageDictionary];
-    
+
     if (storage) {
         NSNumber *freeFileSystemSizeInBytes = [storage objectForKey: NSFileSystemFreeSize];
         freeSpace = [freeFileSystemSizeInBytes unsignedLongLongValue];
@@ -271,8 +271,11 @@ RCT_EXPORT_MODULE(RNDeviceInfo)
 {
     UIDevice *currentDevice = [UIDevice currentDevice];
     NSString *uniqueId = [DeviceUID uid];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *ipadLandscape = [prefs stringForKey:@"ipadLandscape"];
 
     return @{
+             @"ipadLandscape":ipadLandscape ?: [NSNull null],
              @"systemName": currentDevice.systemName,
              @"systemVersion": currentDevice.systemVersion,
              @"apiLevel": @"not available",
@@ -305,7 +308,7 @@ RCT_EXPORT_METHOD(getMacAddress:(RCTPromiseResolveBlock)resolve rejecter:(RCTPro
 {
     NSString *address = @"02:00:00:00:00:00";
     resolve(address);
-} 
+}
 
 RCT_EXPORT_METHOD(getIpAddress:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
@@ -335,7 +338,7 @@ RCT_EXPORT_METHOD(getIpAddress:(RCTPromiseResolveBlock)resolve rejecter:(RCTProm
     // Free memory
     freeifaddrs(interfaces);
     resolve(address);
-} 
+}
 
 RCT_EXPORT_METHOD(isPinOrFingerprintSet:(RCTResponseSenderBlock)callback)
 {

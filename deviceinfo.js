@@ -29,7 +29,7 @@ const devicesWithNotch = [
   {
     brand: 'Asus',
     model: 'ZenFone 5',
-  }, 
+  },
   {
     brand: 'Asus',
     model: 'ZenFone 5z',
@@ -125,6 +125,9 @@ const devicesWithNotch = [
 ];
 
 export default {
+  getIpadLandscape : function() {
+    return Platform.OS==="android" ? null : RNDeviceInfo.ipadLandscape;
+  },
   getUniqueID: function() {
     return RNDeviceInfo.uniqueId;
   },
