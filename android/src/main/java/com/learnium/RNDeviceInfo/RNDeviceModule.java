@@ -181,7 +181,7 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
       }
     }
 
-    p.resolve(macAddress);    
+    p.resolve(macAddress);
   }
 
   @ReactMethod
@@ -244,11 +244,13 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
 
     PackageManager packageManager = this.reactContext.getPackageManager();
     String packageName = this.reactContext.getPackageName();
+    SharedPreferences preferences =  this.reactContext.getSharedPreferences("OkkamiPreferences", Context.MODE_PRIVATE);
 
     constants.put("appVersion", "not available");
     constants.put("appName", "not available");
     constants.put("buildVersion", "not available");
     constants.put("buildNumber", 0);
+    constants.put("deviceLandscape", preferences.getString("deviceLandscape","false"));
 
     try {
       PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);

@@ -125,8 +125,8 @@ const devicesWithNotch = [
 ];
 
 export default {
-  getIpadLandscape : function() {
-    return Platform.OS==="android" ? null : RNDeviceInfo.ipadLandscape;
+  getDeviceLandscape : function() {
+    return RNDeviceInfo.deviceLandscape;
   },
   getUniqueID: function() {
     return RNDeviceInfo.uniqueId;

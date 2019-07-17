@@ -272,10 +272,10 @@ RCT_EXPORT_MODULE(RNDeviceInfo)
     UIDevice *currentDevice = [UIDevice currentDevice];
     NSString *uniqueId = [DeviceUID uid];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSString *ipadLandscape = [prefs stringForKey:@"ipadLandscape"];
+    NSString *deviceLandscape = [prefs stringForKey:@"deviceLandscape"];
 
     return @{
-             @"ipadLandscape":ipadLandscape ?: [NSNull null],
+             @"deviceLandscape":deviceLandscape ?: [NSNull null],
              @"systemName": currentDevice.systemName,
              @"systemVersion": currentDevice.systemVersion,
              @"apiLevel": @"not available",
