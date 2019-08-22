@@ -275,7 +275,7 @@ RCT_EXPORT_MODULE(RNDeviceInfo)
     NSString *deviceLandscape = [prefs stringForKey:@"deviceLandscape"];
 
     return @{
-             @"deviceLandscape":deviceLandscape ?: [NSNull null],
+             @"deviceLandscape":deviceLandscape ?: @"false",
              @"systemName": currentDevice.systemName,
              @"systemVersion": currentDevice.systemVersion,
              @"apiLevel": @"not available",
